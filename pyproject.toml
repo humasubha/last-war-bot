@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "game-vision-agent"
+version = "0.1.0"
+description = "Offline-first, read-only Windows visual observation foundation for games"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+classifiers = ["Programming Language :: Python :: 3", "Operating System :: Microsoft :: Windows"]
+dependencies = ["numpy>=1.26", "mss>=9.0", "Pillow>=10", "psutil>=5.9"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+inference = ["onnxruntime>=1.18"]
+training = ["ultralytics>=8.3"]
+
+[project.scripts]
+game-vision = "game_vision_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
